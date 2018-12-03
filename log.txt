@@ -1,0 +1,18 @@
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2018 20:41:11] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2018 20:41:11] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2018 20:41:18] "GET /setup2 HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2018 20:41:18] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8086
+DEBUG:urllib3.connectionpool:http://localhost:8086 "GET /query?q=SELECT+%2A+from+setup2+ORDER+by+time+DESC&db=solar HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2018 20:41:40] "GET /station/setup2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/Nov/2018 20:41:40] "GET /favicon.ico HTTP/1.1" 404 -

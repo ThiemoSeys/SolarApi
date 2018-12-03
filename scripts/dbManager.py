@@ -3,13 +3,16 @@ import logging
 
 from influxdb import InfluxDBClient
 
+from scripts.db_config import *
+
 # configs
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG, filename="log_db.txt")
 
 
 class dbManager():
-    def __init__(self, client=InfluxDBClient(host='localhost', port=8086, database="thiemo")):
+    def __init__(self, client=InfluxDBClient(host=HOST, port=PORT, database=DB_NAME)):
         self.client = client
+        self.create_database(DB_NAME)
 
     # returns a list of all databases
     def get_all_databases(self):
@@ -31,12 +34,13 @@ class dbManager():
             self.client.create_database(dbname=db_name)
 
     # works but parameters for the db collumns need to be changed to something usefull
-    def add_data_solar(self, db_name):
-        self.client.write(['cpu,atag=test1 idle=20,usertime=10,system=1'], {'db': db_name}, 204, 'line')
+    def add_data_solar(self, pannel_voltage, battery_voltage, db_name="solar"):
+        self.client.write(
+            ['setup1,pannel_voltage={0} battery_voltage={1}'.format(str(pannel_voltage), str(battery_voltage))],
+            {'db': db_name}, 204, 'line')
 
-    def read_data_from_solar(self, db_name="thiemo", device="cpu", measurement="*"):
-        self.client.switch_database(db_name)
-        results = self.client.query(("SELECT %s from %s ORDER by time DESC") % (measurement, device))
+    def read_data_from_solar(self, device="setup1", measurement="*", amount=10000):
+        results = self.client.query(("SELECT %s from %s ORDER by time DESC LIMIT  %s") % (measurement, device, amount))
         points = results.get_points()
 
         list_items = []
@@ -46,6 +50,7 @@ class dbManager():
         return list_items
 
 
-manager = dbManager()
+db = dbManager()
 
-print(manager.read_data_from_solar())
+db.add_data_solar(19.1, 12.1)
+print(db.read_data_from_solar())
